@@ -18,6 +18,6 @@ namespace OneCog.Io.Plex.Music
             Artists = artistProvider;
         }
 
-        public Artist.IProvider Artists { get; }
+        public Artist.IProvider Artists { get; private set; }
     }
 }

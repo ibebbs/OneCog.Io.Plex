@@ -7,8 +7,14 @@ namespace OneCog.Io.Plex
 {
     public class Server
     {
-        public Section.IProvider Sections { get; }
+        public Server(Section.IProvider sections, Music.IProvider music)
+        {
+            Sections = sections;
+            Music = music;
+        }
 
-        public Music.IProvider Music { get; }
+        public Section.IProvider Sections { get; private set; }
+
+        public Music.IProvider Music { get; private set; }
     }
 }

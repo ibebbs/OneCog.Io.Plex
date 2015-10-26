@@ -12,13 +12,13 @@ namespace OneCog.Io.Plex.Tests.Section
     public class ProviderTestFixture
     {
         [Test]
-        public void ShouldBeAbleToGetSections()
+        public async Task ShouldBeAbleToGetSections()
         {
             Plex.Section.Provider provider = new Plex.Section.Provider(
                 new Plex.Api.Instance("winplex", 32400)
             );
 
-            List<Plex.Section.ISection> sections = provider.All.ToEnumerable().ToList();
+            IList<Plex.Section.ISection> sections = await provider.All.ToList();
 
             Assert.That(sections.Count, Is.EqualTo(4));
             Assert.That(sections.OfType<Plex.Section.IMusic>().Count(), Is.EqualTo(1));

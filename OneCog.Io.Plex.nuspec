@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>OneCog.Io.Plex</id>
+    <version>$version$</version>
+    <title>OneCog.Io.Plex</title>
+    <authors>OneCog</authors>
+    <owners>OneCog</owners>
+    <licenseUrl>https://github.com/ibebbs/OneCog.Io.Plex/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ibebbs/OneCog.Io.Plex/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/ibebbs/OneCog.Io.Plex/master/Plex-logo.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Open source, portable library for interacting with Plex Media Server.</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>Plex Media Server PMS</tags>
+    @dependencies@
+  </metadata>
+  @files@
+</package>

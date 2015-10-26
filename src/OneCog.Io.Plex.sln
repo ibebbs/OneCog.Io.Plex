@@ -1,11 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneCog.Io.Plex", "OneCog.Io.Plex\OneCog.Io.Plex.csproj", "{836C15BA-03C3-4889-8EBD-F2FB6C7690E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneCog.Io.Plex.Tests", "OneCog.Io.Plex.Tests\OneCog.Io.Plex.Tests.csproj", "{C145D35C-16BA-409D-81BC-95868C94F707}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C48BF390-5C92-48D5-AABB-BE61478CA7DE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{45875ED4-AA6D-4524-B13C-3578BCB36B6F}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.fsx = ..\build.fsx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

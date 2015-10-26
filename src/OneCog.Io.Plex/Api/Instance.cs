@@ -49,9 +49,9 @@ namespace OneCog.Io.Plex.Api
             }
         }
 
-        public Task<IEnumerable<Directory>> GetArtists(string key)
+        public async Task<IEnumerable<Directory>> GetArtists(string key)
         {
-            HttpWebRequest request = ConstructRequest("library/sections/all");
+            HttpWebRequest request = ConstructRequest(string.Format("library/sections/{0}/all", key));
             WebResponse response = await request.GetResponseAsync();
 
             using (Stream stream = response.GetResponseStream())
