@@ -19,11 +19,23 @@ namespace OneCog.Io.Plex.Api
         [XmlAttribute("title")]
         public string Title { get; set; }
 
+        [XmlAttribute("parentKey")]
+        public string ParentKey { get; set; }
+
+        [XmlAttribute("parentTitle")]
+        public string ParentTitle { get; set; }
+
+        [XmlAttribute("parentThumb")]
+        public string ParentThumb { get; set; }
+
         [XmlAttribute("summary")]
         public string Summary { get; set; }
 
         [XmlAttribute("type")]
         public string Type { get; set; }
+
+        [XmlAttribute("year")]
+        public int Year { get; set; }
 
         [XmlAttribute("art")]
         public string ArtUri { get; set; }
@@ -33,6 +45,9 @@ namespace OneCog.Io.Plex.Api
 
         [XmlAttribute("composite")]
         public string CompositeUri { get; set; }
+
+        [XmlAttribute("studio")]
+        public string Studio { get; set; }
 
         [XmlElement("Genre")]
         public Genre[] Genres { get; set; }

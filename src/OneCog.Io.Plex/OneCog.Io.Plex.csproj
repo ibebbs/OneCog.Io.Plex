@@ -46,6 +46,8 @@
     <Compile Include="Api\MediaContainer.cs" />
     <Compile Include="Api\Section.cs" />
     <Compile Include="Api\Serializer.cs" />
+    <Compile Include="Music\Album\Instance.cs" />
+    <Compile Include="Music\Album\Provider.cs" />
     <Compile Include="Properties\AssemblyDebugInfo.cs" />
     <Compile Include="Music\Artist\Instance.cs" />
     <Compile Include="Music\Artist\Provider.cs" />

@@ -26,7 +26,7 @@ namespace OneCog.Io.Plex.Music.Artist
             All = sectionProvider.All
                 .OfType<Section.IMusic>()
                 .SelectMany(section => api.GetArtists(section.Key))
-                .Select(directory => AutoMapper.Mapper.Map<Instance>(directory));
+                .Select(AutoMapper.Mapper.Map<Instance>);
         }
 
         public IObservable<Models.IArtist> All { get; private set; }

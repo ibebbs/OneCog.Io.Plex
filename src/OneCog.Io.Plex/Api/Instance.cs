@@ -13,6 +13,8 @@ namespace OneCog.Io.Plex.Api
         Task<IEnumerable<Directory>> GetSections();
 
         Task<IEnumerable<Directory>> GetArtists(string key);
+
+        Task<IEnumerable<Directory>> GetAlbums(string artistMetadataKey);
     }
 
     internal class Instance : IInstance
@@ -52,6 +54,19 @@ namespace OneCog.Io.Plex.Api
         public async Task<IEnumerable<Directory>> GetArtists(string key)
         {
             HttpWebRequest request = ConstructRequest(string.Format("library/sections/{0}/all", key));
+            WebResponse response = await request.GetResponseAsync();
+
+            using (Stream stream = response.GetResponseStream())
+            {
+                MediaContainer container = Serializer.DeserializeMediaContainer(stream);
+
+                return container.Directories.ToArray();
+            }
+        }
+
+        public async Task<IEnumerable<Directory>> GetAlbums(string artistMetadataKey)
+        {
+            HttpWebRequest request = ConstructRequest(artistMetadataKey);
             WebResponse response = await request.GetResponseAsync();
 
             using (Stream stream = response.GetResponseStream())
