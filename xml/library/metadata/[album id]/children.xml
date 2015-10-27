@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MediaContainer size="11" allowSync="1" art="/library/metadata/60734/art/1445625371" grandparentTitle="The xx" identifier="com.plexapp.plugins.library" key="60735" librarySectionID="5" librarySectionTitle="Music" librarySectionUUID="40a75bd7-3bdd-4c31-8ff5-3719c4c730a6" mediaTagPrefix="/system/bundle/media/flags/" mediaTagVersion="1443100794" nocache="1" parentIndex="1" parentTitle="XX" parentYear="2009" summary="The eponymous debut album from South London four-piece the xx draws influence from Young Marble Giants, Cocteau Twins, and a hint of electronica and R&amp;B. With these influences, the group crafts delicate, melancholic, minimalist pop songs. Tender and seductive, this simply delightful album includes the singles &quot;Basic Space&quot; and &quot;Crystalised.&quot;" thumb="/library/metadata/60735/thumb/1445625679" title1="The xx" title2="XX" viewGroup="track" viewMode="65593">
+  <Track ratingKey="60736" key="/library/metadata/60736" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Intro" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="1" parentIndex="1" ratingCount="10763127" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="127895" addedAt="1438454263" updatedAt="1445625679" chapterSource="">
+    <Media id="75954" duration="127895" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78716" key="/library/parts/78716/file.mp3" duration="127895" file="M:\The xx\xx\01 Intro.mp3" size="5115904" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60737" key="/library/metadata/60737" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="VCR" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="2" parentIndex="1" ratingCount="8370175" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="177084" addedAt="1438454263" updatedAt="1445625679" chapterSource="">
+    <Media id="75955" duration="177084" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78717" key="/library/parts/78717/file.mp3" duration="177084" file="M:\The xx\xx\02 VCR.mp3" size="7081756" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60738" key="/library/metadata/60738" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Crystalised" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="3" parentIndex="1" ratingCount="11001913" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="201926" addedAt="1438454264" updatedAt="1445625679" chapterSource="">
+    <Media id="75956" duration="201926" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78718" key="/library/parts/78718/file.mp3" duration="201926" file="M:\The xx\xx\03 Crystalised.mp3" size="8074600" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60739" key="/library/metadata/60739" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Islands" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="4" parentIndex="1" ratingCount="9778776" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="160705" addedAt="1438454265" updatedAt="1445625679" chapterSource="" primaryExtraKey="/library/metadata/62569">
+    <Media id="75957" duration="160705" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78719" key="/library/parts/78719/file.mp3" duration="160705" file="M:\The xx\xx\04 Islands.mp3" size="6427168" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60740" key="/library/metadata/60740" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Heart Skipped A Beat" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="5" parentIndex="1" ratingCount="7390990" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="242259" addedAt="1438454265" updatedAt="1445625679" chapterSource="">
+    <Media id="75958" duration="242259" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78720" key="/library/parts/78720/file.mp3" duration="242259" file="M:\The xx\xx\05 Heart Skipped a Beat.mp3" size="9686536" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60741" key="/library/metadata/60741" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Fantasy" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="6" parentIndex="1" ratingCount="5286987" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="158223" addedAt="1438454271" updatedAt="1445625679" chapterSource="">
+    <Media id="75959" duration="158223" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78721" key="/library/parts/78721/file.mp3" duration="158223" file="M:\The xx\xx\06 Fantasy.mp3" size="6327988" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60742" key="/library/metadata/60742" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Shelter" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="7" parentIndex="1" ratingCount="5905522" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="270236" addedAt="1438454272" updatedAt="1445625679" chapterSource="">
+    <Media id="75960" duration="270236" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78722" key="/library/parts/78722/file.mp3" duration="270236" file="M:\The xx\xx\07 Shelter.mp3" size="10804660" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60743" key="/library/metadata/60743" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Basic Space" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="8" parentIndex="1" ratingCount="6112124" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="188107" addedAt="1438454272" updatedAt="1445625679" chapterSource="">
+    <Media id="75961" duration="188107" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78723" key="/library/parts/78723/file.mp3" duration="188107" file="M:\The xx\xx\08 Basic Space.mp3" size="7522324" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60744" key="/library/metadata/60744" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Infinity" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="9" parentIndex="1" ratingCount="5477746" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="313364" addedAt="1438454273" updatedAt="1445625679" chapterSource="">
+    <Media id="75962" duration="313364" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78724" key="/library/parts/78724/file.mp3" duration="313364" file="M:\The xx\xx\09 Infinity.mp3" size="12528304" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60745" key="/library/metadata/60745" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Night Time" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="10" parentIndex="1" ratingCount="5325441" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="216842" addedAt="1438454273" updatedAt="1445625679" chapterSource="">
+    <Media id="75963" duration="216842" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78725" key="/library/parts/78725/file.mp3" duration="216842" file="M:\The xx\xx\10 Night Time.mp3" size="8670724" container="mp3"/>
+    </Media>
+  </Track>
+  <Track ratingKey="60746" key="/library/metadata/60746" parentRatingKey="60735" grandparentRatingKey="60734" type="track" title="Stars" grandparentKey="/library/metadata/60734" parentKey="/library/metadata/60735" grandparentTitle="The xx" parentTitle="XX" summary="" index="11" parentIndex="1" ratingCount="5009908" year="2009" thumb="/library/metadata/60735/thumb/1445625679" art="/library/metadata/60734/art/1445625371" parentThumb="/library/metadata/60735/thumb/1445625679" grandparentThumb="/library/metadata/60734/thumb/1445625371" grandparentArt="/library/metadata/60734/art/1445625371" duration="262608" addedAt="1438454274" updatedAt="1445625679" chapterSource="">
+    <Media id="75964" duration="262608" bitrate="320" audioChannels="2" audioCodec="mp3" container="mp3">
+      <Part id="78726" key="/library/parts/78726/file.mp3" duration="262608" file="M:\The xx\xx\11 Stars.mp3" size="10499812" container="mp3"/>
+    </Media>
+  </Track>
+</MediaContainer>
