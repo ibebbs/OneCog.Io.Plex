@@ -6,7 +6,9 @@ namespace OneCog.Io.Plex.Music.Album
 {
     public interface IProvider
     {
-        IObservable<Models.IAlbum> ForArtist(Models.IArtist artist);
+        IObservable<IAlbum> ForArtist(IArtist artist);
+
+        IObservable<IAlbum> All { get; }
     }
 
     internal class Provider : IProvider
@@ -19,7 +21,7 @@ namespace OneCog.Io.Plex.Music.Album
                 .ForMember(instance => instance.ArtistKey, map => map.MapFrom(directory => directory.ParentKey));
         }
 
-        public Provider(Api.IInstance api, Section.IProvider sections)
+        public Provider(Section.IProvider sections, Api.IInstance api)
         {
             _api = api;
 
@@ -28,12 +30,12 @@ namespace OneCog.Io.Plex.Music.Album
                 .Select(AutoMapper.Mapper.Map<Instance>);
         }
 
-        public IObservable<Models.IAlbum> ForArtist(Models.IArtist artist)
+        public IObservable<IAlbum> ForArtist(IArtist artist)
         {
             return _api.GetAlbumsForArtist(artist.Key).ToObservable()
                 .Select(AutoMapper.Mapper.Map<Instance>);
         }
 
-        public IObservable<Models.IAlbum> All { get; private set; }
+        public IObservable<IAlbum> All { get; private set; }
     }
 }

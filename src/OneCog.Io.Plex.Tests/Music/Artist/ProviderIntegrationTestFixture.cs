@@ -18,7 +18,7 @@ namespace OneCog.Io.Plex.Tests.Music.Artist
                 sectionProvider, api
             );
 
-            IList<Plex.Music.Models.IArtist> artists = await provider.All.ToList();
+            IList<Plex.Music.IArtist> artists = await provider.All.ToList();
 
             Assert.That(artists, Is.Not.Null);
             Assert.That(artists.Count, Is.GreaterThan(0));

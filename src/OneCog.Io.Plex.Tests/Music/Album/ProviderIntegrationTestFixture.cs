@@ -15,9 +15,9 @@ namespace OneCog.Io.Plex.Tests.Music.Album
             Plex.Api.Instance api = new Plex.Api.Instance("winplex", 32400);
             Plex.Section.Provider sectionProvider = new Plex.Section.Provider(api);
 
-            Plex.Music.Album.Provider provider = new Plex.Music.Album.Provider(api, sectionProvider);
+            Plex.Music.Album.Provider provider = new Plex.Music.Album.Provider(sectionProvider, api);
 
-            IList<Plex.Music.Models.IAlbum> artists = await provider.All.ToList();
+            IList<Plex.Music.IAlbum> artists = await provider.All.ToList();
 
             Assert.That(artists, Is.Not.Null);
             Assert.That(artists.Count, Is.GreaterThan(0));
@@ -30,12 +30,12 @@ namespace OneCog.Io.Plex.Tests.Music.Album
             Plex.Api.Instance api = new Plex.Api.Instance("winplex", 32400);
             Plex.Section.Provider sectionProvider = new Plex.Section.Provider(api);
 
-            Plex.Music.Album.Provider provider = new Plex.Music.Album.Provider(api, sectionProvider);
+            Plex.Music.Album.Provider provider = new Plex.Music.Album.Provider(sectionProvider, api);
 
-            Plex.Music.Models.IArtist artist = A.Fake<Plex.Music.Models.IArtist>();
+            Plex.Music.IArtist artist = A.Fake<Plex.Music.IArtist>();
             A.CallTo(() => artist.Key).Returns(artistMetadataKey);
 
-            IList<Plex.Music.Models.IAlbum> artists = await provider.ForArtist(artist).ToList();
+            IList<Plex.Music.IAlbum> artists = await provider.ForArtist(artist).ToList();
 
             Assert.That(artists, Is.Not.Null);
             Assert.That(artists.Count, Is.GreaterThan(0));

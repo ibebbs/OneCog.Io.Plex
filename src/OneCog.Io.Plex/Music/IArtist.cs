@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OneCog.Io.Plex.Music.Models
+namespace OneCog.Io.Plex.Music
 {
     public interface IArtist
     {

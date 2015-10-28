@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace OneCog.Io.Plex.Music
 {
     public interface IProvider
     {
         Artist.IProvider Artists { get; }
+
+        Album.IProvider Albums { get; }
     }
 
     internal class Provider : IProvider
     {
-        public Provider(Artist.IProvider artistProvider)
+        public Provider(Artist.IProvider artistProvider, Album.IProvider albumProvider)
         {
             Artists = artistProvider;
+            Albums = albumProvider;
         }
 
         public Artist.IProvider Artists { get; private set; }
+
+        public Album.IProvider Albums { get; private set; }
     }
 }

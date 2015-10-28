@@ -51,9 +51,9 @@
     <Compile Include="Properties\AssemblyDebugInfo.cs" />
     <Compile Include="Music\Artist\Instance.cs" />
     <Compile Include="Music\Artist\Provider.cs" />
-    <Compile Include="Music\Models\IAlbum.cs" />
-    <Compile Include="Music\Models\IArtist.cs" />
-    <Compile Include="Music\Models\ITrack.cs" />
+    <Compile Include="Music\IAlbum.cs" />
+    <Compile Include="Music\IArtist.cs" />
+    <Compile Include="Music\ITrack.cs" />
     <Compile Include="Music\Provider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Section\DirectoryToSectionConverter.cs" />

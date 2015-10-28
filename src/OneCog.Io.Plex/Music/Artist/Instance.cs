@@ -1,7 +1,7 @@
 ﻿
 namespace OneCog.Io.Plex.Music.Artist
 {
-    internal class Instance : Models.IArtist
+    internal class Instance : IArtist
     {
         public string Key { get; private set; }
 

@@ -9,7 +9,7 @@ namespace OneCog.Io.Plex.Music.Artist
 {
     public interface IProvider
     {
-        IObservable<Models.IArtist> All { get; }
+        IObservable<IArtist> All { get; }
     }
 
     internal class Provider : IProvider
@@ -29,6 +29,6 @@ namespace OneCog.Io.Plex.Music.Artist
                 .Select(AutoMapper.Mapper.Map<Instance>);
         }
 
-        public IObservable<Models.IArtist> All { get; private set; }
+        public IObservable<IArtist> All { get; private set; }
     }
 }
