@@ -12,9 +12,11 @@ namespace OneCog.Io.Plex.Api
     {
         Task<IEnumerable<Directory>> GetSections();
 
-        Task<IEnumerable<Directory>> GetArtists(string key);
+        Task<IEnumerable<Directory>> GetAllArtists(string sectionKey);
 
-        Task<IEnumerable<Directory>> GetAlbums(string artistMetadataKey);
+        Task<IEnumerable<Directory>> GetAllAlbums(string sectionKey);
+
+        Task<IEnumerable<Directory>> GetAlbumsForArtist(string artistMetadataKey);
     }
 
     internal class Instance : IInstance
@@ -51,9 +53,9 @@ namespace OneCog.Io.Plex.Api
             }
         }
 
-        public async Task<IEnumerable<Directory>> GetArtists(string key)
+        public async Task<IEnumerable<Directory>> GetAllArtists(string sectionKey)
         {
-            HttpWebRequest request = ConstructRequest(string.Format("library/sections/{0}/all", key));
+            HttpWebRequest request = ConstructRequest(string.Format("library/sections/{0}/all", sectionKey));
             WebResponse response = await request.GetResponseAsync();
 
             using (Stream stream = response.GetResponseStream())
@@ -64,7 +66,20 @@ namespace OneCog.Io.Plex.Api
             }
         }
 
-        public async Task<IEnumerable<Directory>> GetAlbums(string artistMetadataKey)
+        public async Task<IEnumerable<Directory>> GetAllAlbums(string sectionKey)
+        {
+            HttpWebRequest request = ConstructRequest(string.Format("library/sections/{0}/albums", sectionKey));
+            WebResponse response = await request.GetResponseAsync();
+
+            using (Stream stream = response.GetResponseStream())
+            {
+                MediaContainer container = Serializer.DeserializeMediaContainer(stream);
+
+                return container.Directories.ToArray();
+            }
+        }
+
+        public async Task<IEnumerable<Directory>> GetAlbumsForArtist(string artistMetadataKey)
         {
             HttpWebRequest request = ConstructRequest(artistMetadataKey);
             WebResponse response = await request.GetResponseAsync();

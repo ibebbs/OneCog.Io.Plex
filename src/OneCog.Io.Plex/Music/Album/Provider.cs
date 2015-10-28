@@ -19,15 +19,21 @@ namespace OneCog.Io.Plex.Music.Album
                 .ForMember(instance => instance.ArtistKey, map => map.MapFrom(directory => directory.ParentKey));
         }
 
-        public Provider(Api.IInstance api)
+        public Provider(Api.IInstance api, Section.IProvider sections)
         {
             _api = api;
+
+            All = sections.All.OfType<Section.IMusic>()
+                .SelectMany(section => api.GetAllAlbums(section.Key))
+                .Select(AutoMapper.Mapper.Map<Instance>);
         }
 
         public IObservable<Models.IAlbum> ForArtist(Models.IArtist artist)
         {
-            return _api.GetAlbums(artist.Key).ToObservable()
+            return _api.GetAlbumsForArtist(artist.Key).ToObservable()
                 .Select(AutoMapper.Mapper.Map<Instance>);
         }
+
+        public IObservable<Models.IAlbum> All { get; private set; }
     }
 }

@@ -25,7 +25,7 @@ namespace OneCog.Io.Plex.Music.Artist
         {
             All = sectionProvider.All
                 .OfType<Section.IMusic>()
-                .SelectMany(section => api.GetArtists(section.Key))
+                .SelectMany(section => api.GetAllArtists(section.Key))
                 .Select(AutoMapper.Mapper.Map<Instance>);
         }
 
