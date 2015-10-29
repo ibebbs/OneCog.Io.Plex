@@ -14,9 +14,11 @@ Use the following code to instantiate a server:
 
 Retrieve all artists with:
 
-```IList<OneCog.Io.Plex.Music.Models.IArtist> artists = await server.Music.Artists.All.ToList();```
+```IList<OneCog.Io.Plex.Music.IArtist> artists = await server.Music.Artists.All.ToList();```
 
 Retrieve all albums with:
 
-```IList<OneCog.Io.Plex.Music.Models.IAlbum> albumss = await server.Music.Albums.All.ToList();```
+```IList<OneCog.Io.Plex.Music.IAlbum> albumss = await server.Music.Albums.All.ToList();```
+
+NOTE: All access to the metadata library is via IObservable<T> instances. This allows for improved asynchronous behaviour, buffering and composition with other observable sources.
 
