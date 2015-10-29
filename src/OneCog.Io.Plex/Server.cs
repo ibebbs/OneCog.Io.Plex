@@ -16,7 +16,8 @@ namespace OneCog.Io.Plex
             Section.IProvider sections = new Section.Provider(api);
             Music.IProvider music = new Music.Provider(
                 new Music.Artist.Provider(sections, api),
-                new Music.Album.Provider(sections, api)
+                new Music.Album.Provider(sections, api),
+                new Music.Track.Provider(api)
             );
 
             return new Server(sections, music);

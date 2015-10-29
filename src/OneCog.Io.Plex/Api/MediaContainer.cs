@@ -25,5 +25,8 @@ namespace OneCog.Io.Plex.Api
 
         [XmlElement("Directory", typeof(Directory))]
         public Directory[] Directories { get; set; }
+
+        [XmlElement("Track", typeof(Track))]
+        public Track[] Tracks { get; set; }
     }
 }

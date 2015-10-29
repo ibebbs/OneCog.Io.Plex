@@ -84,6 +84,7 @@
     <Compile Include="Api\InstanceTestFixture.cs" />
     <Compile Include="Music\Album\ProviderIntegrationTestFixture.cs" />
     <Compile Include="Music\Artist\ProviderIntegrationTestFixture.cs" />
+    <Compile Include="Music\Track\ProviderIntegrationTestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Section\ProviderTestFixture.cs" />
   </ItemGroup>

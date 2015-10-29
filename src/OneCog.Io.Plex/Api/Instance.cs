@@ -17,6 +17,8 @@ namespace OneCog.Io.Plex.Api
         Task<IEnumerable<Directory>> GetAllAlbums(string sectionKey);
 
         Task<IEnumerable<Directory>> GetAlbumsForArtist(string artistMetadataKey);
+
+        Task<IEnumerable<Track>> GetTracksForAlbum(string albumMetadataKey);
     }
 
     internal class Instance : IInstance
@@ -89,6 +91,19 @@ namespace OneCog.Io.Plex.Api
                 MediaContainer container = Serializer.DeserializeMediaContainer(stream);
 
                 return container.Directories.ToArray();
+            }
+        }
+
+        public async Task<IEnumerable<Track>> GetTracksForAlbum(string albumMetadataKey)
+        {
+            HttpWebRequest request = ConstructRequest(albumMetadataKey);
+            WebResponse response = await request.GetResponseAsync();
+
+            using (Stream stream = response.GetResponseStream())
+            {
+                MediaContainer container = Serializer.DeserializeMediaContainer(stream);
+
+                return container.Tracks.ToArray();
             }
         }
     }
