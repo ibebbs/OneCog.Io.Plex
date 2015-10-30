@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace OneCog.Io.Plex
 {
     public interface IServer
@@ -10,9 +11,9 @@ namespace OneCog.Io.Plex
 
     public class Server : IServer
     {
-        public static IServer Create(string hostName, ushort port)
+        public static IServer Create(Uri host)
         {
-            Api.IInstance api = new Api.Instance(hostName, port);
+            Api.IInstance api = new Api.Instance(host);
             Section.IProvider sections = new Section.Provider(api);
             Music.IProvider music = new Music.Provider(
                 new Music.Artist.Provider(sections, api),
@@ -23,6 +24,15 @@ namespace OneCog.Io.Plex
             return new Server(sections, music);
         }
 
+        public static IServer Create(string hostName, ushort port)
+        {
+            UriBuilder builder = new UriBuilder();
+            builder.Scheme = "http";
+            builder.Host = hostName;
+            builder.Port = port;
+
+            return Create(builder.Uri);
+        }
 
         private Server(Section.IProvider sections, Music.IProvider music)
         {

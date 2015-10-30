@@ -14,7 +14,7 @@ namespace OneCog.Io.Plex.Tests.Api
         [Test]
         public async Task ShouldBeAbleToGetSections()
         {
-            Instance instance = new Instance("winplex", 32400);
+            Instance instance = new Instance(new Uri("http://winplex:32400"));
 
             IEnumerable<Directory> sections = await instance.GetSections();
 

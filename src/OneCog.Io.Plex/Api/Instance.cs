@@ -19,24 +19,25 @@ namespace OneCog.Io.Plex.Api
         Task<IEnumerable<Directory>> GetAlbumsForArtist(string artistMetadataKey);
 
         Task<IEnumerable<Track>> GetTracksForAlbum(string albumMetadataKey);
+
+        Uri Host { get; }
     }
 
     internal class Instance : IInstance
     {
         private static readonly Serializer Serializer = new Serializer();
 
-        private readonly string _host;
-        private readonly ushort _port;
-
-        public Instance(string host, ushort port)
+        public Instance(Uri host)
         {
-            _host = host;
-            _port = port;
+            if (host == null) throw new ArgumentNullException("host");
+            if (!host.IsAbsoluteUri) throw new ArgumentException("Host uri must not be relative");
+
+            Host = host;
         }
 
         private HttpWebRequest ConstructRequest(string uri)
         {
-            HttpWebRequest request = HttpWebRequest.CreateHttp(string.Format("http://{0}:{1}/", _host, _port));
+            HttpWebRequest request = HttpWebRequest.CreateHttp(new Uri(Host, uri));
             request.Method = "GET";
 
             return request;
@@ -106,5 +107,7 @@ namespace OneCog.Io.Plex.Api
                 return container.Tracks.ToArray();
             }
         }
+
+        public Uri Host { get; private set; }
     }
 }

@@ -15,7 +15,7 @@ namespace OneCog.Io.Plex.Tests.Section
         public async Task ShouldBeAbleToGetSections()
         {
             Plex.Section.Provider provider = new Plex.Section.Provider(
-                new Plex.Api.Instance("winplex", 32400)
+                new Plex.Api.Instance(new Uri("http://winplex:32400"))
             );
 
             IList<Plex.Section.ISection> sections = await provider.All.ToList();

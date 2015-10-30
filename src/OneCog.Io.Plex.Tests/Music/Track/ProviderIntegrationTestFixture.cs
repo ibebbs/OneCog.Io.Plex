@@ -1,5 +1,6 @@
 ﻿using FakeItEasy;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace OneCog.Io.Plex.Tests.Music.Track
         [TestCase("/library/metadata/60734/children")]
         public async Task ShouldBeAbleToRetrieveTracksForAlbum(string albumMetadataKey)
         {
-            Plex.Api.Instance api = new Plex.Api.Instance("winplex", 32400);
+            Plex.Api.Instance api = new Plex.Api.Instance(new Uri("http://winplex:32400"));
 
             Plex.Music.Track.Provider provider = new Plex.Music.Track.Provider(api);
 

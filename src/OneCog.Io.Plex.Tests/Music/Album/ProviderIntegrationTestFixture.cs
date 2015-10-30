@@ -1,5 +1,6 @@
 ﻿using FakeItEasy;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace OneCog.Io.Plex.Tests.Music.Album
         [Test]
         public async Task ShouldBeAbleToAllAlbums()
         {
-            Plex.Api.Instance api = new Plex.Api.Instance("winplex", 32400);
+            Plex.Api.Instance api = new Plex.Api.Instance(new Uri("http://winplex:32400"));
             Plex.Section.Provider sectionProvider = new Plex.Section.Provider(api);
 
             Plex.Music.Album.Provider provider = new Plex.Music.Album.Provider(sectionProvider, api);
@@ -27,7 +28,7 @@ namespace OneCog.Io.Plex.Tests.Music.Album
         [TestCase("/library/metadata/60734/children")]
         public async Task ShouldBeAbleToRetrieveAlbumsForArtist(string artistMetadataKey)
         {
-            Plex.Api.Instance api = new Plex.Api.Instance("winplex", 32400);
+            Plex.Api.Instance api = new Plex.Api.Instance(new Uri("http://winplex:32400"));
             Plex.Section.Provider sectionProvider = new Plex.Section.Provider(api);
 
             Plex.Music.Album.Provider provider = new Plex.Music.Album.Provider(sectionProvider, api);

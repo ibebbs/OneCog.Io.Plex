@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace OneCog.Io.Plex.Tests.Music.Artist
         [Test]
         public async Task ShouldBeAbleToRetrieveAllArtists()
         {
-            Plex.Api.Instance api = new Plex.Api.Instance("winplex", 32400);
+            Plex.Api.Instance api = new Plex.Api.Instance(new Uri("http://winplex:32400"));
             Plex.Section.Provider sectionProvider = new Plex.Section.Provider(api);
 
             Plex.Music.Artist.Provider provider = new Plex.Music.Artist.Provider(
