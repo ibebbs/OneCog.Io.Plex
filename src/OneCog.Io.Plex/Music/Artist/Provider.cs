@@ -14,21 +14,37 @@ namespace OneCog.Io.Plex.Music.Artist
 
     internal class Provider : IProvider
     {
-        static Provider()
-        {
-            AutoMapper.Mapper.Configuration
-                .CreateMap<Api.Directory, Instance>()
-                .ForMember(instance => instance.Name, mapping => mapping.MapFrom(directory => directory.Title));
-        }
+        private readonly Section.IProvider _sectionProvider;
+        private readonly Api.IInstance _api;
 
         public Provider(Section.IProvider sectionProvider, Api.IInstance api)
         {
-            All = sectionProvider.All
-                .OfType<Section.IMusic>()
-                .SelectMany(section => api.GetAllArtists(section.Key))
-                .Select(AutoMapper.Mapper.Map<Instance>);
+            _sectionProvider = sectionProvider;
+            _api = api;
         }
 
-        public IObservable<IArtist> All { get; private set; }
+        private IArtist Map(Api.Directory directory)
+        {
+            return new Instance
+            {
+                Key = directory.Key,
+                Name = directory.Title,
+                Summary = directory.Summary,
+                Art = new Uri(_api.Host, directory.ArtUri),
+                Thumb = new Uri(_api.Host, directory.ThumbnailUri)
+            };
+        }
+
+        public IObservable<IArtist> All 
+        { 
+            get
+            {
+                return _sectionProvider.All
+                    .OfType<Section.IMusic>()
+                    .SelectMany(section => _api.GetAllArtists(section.Key))
+                    .SelectMany(results => results)
+                    .Select(Map);
+            }
+        }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OneCog.Io.Plex.Music
 {
@@ -14,8 +10,8 @@ namespace OneCog.Io.Plex.Music
 
         string Summary { get; }
 
-        string ArtUri { get; }
+        Uri Art { get; }
 
-        string ThumbUri { get; }
+        Uri Thumb { get; }
     }
 }

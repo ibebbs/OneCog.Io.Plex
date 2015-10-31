@@ -13,29 +13,47 @@ namespace OneCog.Io.Plex.Music.Album
 
     internal class Provider : IProvider
     {
+        private readonly Section.IProvider _sections;
         private readonly Api.IInstance _api;
-
-        static Provider()
-        {
-            AutoMapper.Mapper.CreateMap<Api.Directory, Instance>()
-                .ForMember(instance => instance.ArtistKey, map => map.MapFrom(directory => directory.ParentKey));
-        }
 
         public Provider(Section.IProvider sections, Api.IInstance api)
         {
+            _sections = sections;
             _api = api;
+        }
 
-            All = sections.All.OfType<Section.IMusic>()
-                .SelectMany(section => api.GetAllAlbums(section.Key))
-                .Select(AutoMapper.Mapper.Map<Instance>);
+        private IAlbum Map(Api.Directory directory)
+        {
+            return new Instance
+            {
+                Key = directory.Key,
+                Title = directory.Title,
+                Summary = directory.Summary,
+                Studio = directory.Studio,
+                ArtistKey = directory.ParentKey,
+                Year = directory.Year,
+                Art = new Uri(_api.Host, directory.ArtUri),
+                Thumb = new Uri(_api.Host, directory.ThumbnailUri)
+            };
         }
 
         public IObservable<IAlbum> ForArtist(IArtist artist)
         {
             return _api.GetAlbumsForArtist(artist.Key).ToObservable()
-                .Select(AutoMapper.Mapper.Map<Instance>);
+                .SelectMany(results => results)
+                .Select(Map);
         }
 
-        public IObservable<IAlbum> All { get; private set; }
+        public IObservable<IAlbum> All 
+        { 
+            get
+            {
+                return _sections.All
+                    .OfType<Section.IMusic>()
+                    .SelectMany(section => _api.GetAllAlbums(section.Key))
+                    .SelectMany(results => results)
+                    .Select(Map);
+            }
+        }
     }
 }

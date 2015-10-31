@@ -18,22 +18,22 @@ namespace OneCog.Io.Plex.Music
 
         int Duration { get; set; }
 
-        string ThumbUri { get; set; }
+        Uri Thumb { get; set; }
 
-        string ArtUri { get; set; }
+        Uri Art { get; set; }
 
         string AlbumKey { get; set; }
 
         string AlbumTitle { get; set; }
 
-        string AlbumThumb { get; set; }
+        Uri AlbumThumb { get; set; }
 
         string ArtistKey { get; set; }
 
         string ArtistName { get; set; }
 
-        string ArtistThumbUri { get; set; }
+        Uri ArtistThumb { get; set; }
 
-        string ArtistArtUri { get; set; }
+        Uri ArtistArt { get; set; }
     }
 }

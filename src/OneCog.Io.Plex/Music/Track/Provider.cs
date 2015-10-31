@@ -17,20 +17,37 @@ namespace OneCog.Io.Plex.Music.Track
     {
         private readonly Api.IInstance _api;
 
-        static Provider()
-        {
-            AutoMapper.Mapper.CreateMap<Api.Track, Instance>();
-        }
-
         public Provider(Api.IInstance api)
         {
             _api = api;
         }
 
+        private ITrack Map(Api.Track track)
+        {
+            return new Instance
+            {
+                Key = track.Key,
+                Title = track.Title,
+                Summary = track.Summary,
+                Year = track.Year,
+                Duration = track.Duration,
+                Thumb = new Uri(_api.Host, track.ThumbUri),
+                Art = new Uri(_api.Host, track.ArtUri),
+                AlbumKey = track.AlbumKey,
+                AlbumTitle = track.AlbumTitle,
+                AlbumThumb = new Uri(_api.Host, track.AlbumThumb),
+                ArtistKey = track.ArtistKey,
+                ArtistName = track.ArtistName,
+                ArtistThumb = new Uri(_api.Host, track.ArtistThumbUri),
+                ArtistArt = new Uri(_api.Host, track.ArtistArtUri)
+            };
+        }
+
         public IObservable<ITrack> ForAlbum(IAlbum album)
         {
             return _api.GetTracksForAlbum(album.Key).ToObservable()
-                .Select(AutoMapper.Mapper.Map<Instance>);
+                .SelectMany(results => results)
+                .Select(Map);
         }
     }
 }

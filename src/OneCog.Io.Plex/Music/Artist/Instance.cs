@@ -1,16 +1,17 @@
-﻿
+﻿using System;
+
 namespace OneCog.Io.Plex.Music.Artist
 {
     internal class Instance : IArtist
     {
-        public string Key { get; private set; }
+        public string Key { get; set; }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public string Summary { get; private set; }
+        public string Summary { get; set; }
 
-        public string ArtUri { get; private set; }
+        public Uri Art { get; set; }
 
-        public string ThumbUri { get; private set; }
+        public Uri Thumb { get; set; }
     }
 }
