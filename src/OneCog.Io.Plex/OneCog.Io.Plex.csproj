@@ -66,6 +66,7 @@
     <Compile Include="Section\Provider.cs" />
     <Compile Include="Section\Show.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="Transcoder\Provider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">

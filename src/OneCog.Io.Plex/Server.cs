@@ -7,6 +7,8 @@ namespace OneCog.Io.Plex
         Section.IProvider Sections { get; }
 
         Music.IProvider Music { get; }
+
+        Transcoder.IProvider Transcoder { get; }
     }
 
     public class Server : IServer
@@ -20,8 +22,9 @@ namespace OneCog.Io.Plex
                 new Music.Album.Provider(sections, api),
                 new Music.Track.Provider(api)
             );
+            Transcoder.IProvider transcoder = new Transcoder.Provider(api);
 
-            return new Server(sections, music);
+            return new Server(sections, music, transcoder);
         }
 
         public static IServer Create(string hostName, ushort port)
@@ -34,14 +37,17 @@ namespace OneCog.Io.Plex
             return Create(builder.Uri);
         }
 
-        private Server(Section.IProvider sections, Music.IProvider music)
+        private Server(Section.IProvider sections, Music.IProvider music, Transcoder.IProvider transcoder)
         {
             Sections = sections;
             Music = music;
+            Transcoder = transcoder;
         }
 
         public Section.IProvider Sections { get; private set; }
 
         public Music.IProvider Music { get; private set; }
+
+        public Transcoder.IProvider Transcoder { get; private set; }
     }
 }
