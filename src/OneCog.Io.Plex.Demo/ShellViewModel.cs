@@ -57,6 +57,7 @@ namespace OneCog.Io.Plex.Demo
                         .Select<Music.IArtist, ICollectionAction>(artist => Collection<Music.IArtist>.Add(artist))
                         .StartWith(Collection<Music.IArtist>.Clear()))
                 .Switch()
+                .ObserveOnDispatcher()
                 .Publish()
                 .RefCount();
 
