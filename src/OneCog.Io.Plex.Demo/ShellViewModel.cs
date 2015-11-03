@@ -1,6 +1,9 @@
 using Caliburn.Micro;
 using Caliburn.Micro.Reactive.Extensions;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -20,6 +23,8 @@ namespace OneCog.Io.Plex.Demo
 
         private readonly Subject<IServer> _server;
 
+        private readonly ObservableCollection<Music.IArtist> _artists;
+
         private IDisposable _behaviors;
 
         public ShellViewModel()
@@ -28,9 +33,11 @@ namespace OneCog.Io.Plex.Demo
             _port = new ObservableProperty<ushort>(32400, this, () => Port);
             _connectCommand = new ObservableCommand();
             _server = new Subject<IServer>();
+            _artists = new ObservableCollection<Music.IArtist>();
 
             _behaviors = new CompositeDisposable(
-                EnsureConnectCommandConnectsToServer()
+                EnsureConnectCommandConnectsToServer(),
+                EnsureArtistsAreRetrievedWhenServerIsConnected()
             );
         }
 
@@ -40,6 +47,23 @@ namespace OneCog.Io.Plex.Demo
                 .SelectMany(Observable.CombineLatest(_host, _port, (host, port) => new Uri(string.Format("http://{0}:{1}", host, port))).Take(1))
                 .Select(Server.Create)
                 .Subscribe(_server);
+        }
+
+        private IDisposable EnsureArtistsAreRetrievedWhenServerIsConnected()
+        {
+            IObservable<ICollectionAction> artistActions = _server
+                .Select(server =>
+                    server.Music.Artists.All
+                        .Select<Music.IArtist, ICollectionAction>(artist => Collection<Music.IArtist>.Add(artist))
+                        .StartWith(Collection<Music.IArtist>.Clear()))
+                .Switch()
+                .Publish()
+                .RefCount();
+
+            return new CompositeDisposable(
+                artistActions.OfType<Clear>().Subscribe(_ => _artists.Clear()),
+                artistActions.OfType<Add<Music.IArtist>>().Subscribe(action => _artists.Add(action.Item))
+            );
         }
 
         public string Host 
@@ -57,6 +81,11 @@ namespace OneCog.Io.Plex.Demo
         public ICommand ConnectCommand
         {
             get { return _connectCommand; }
+        }
+
+        public IEnumerable<Music.IArtist> Artists
+        {
+            get { return _artists; }
         }
     }
 }

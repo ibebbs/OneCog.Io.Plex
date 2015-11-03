@@ -19,6 +19,7 @@
         <TextBlock Grid.Column="2" Grid.Row="0" Text="Port:" Margin="4"/>
         <TextBox Grid.Column="3" Grid.Row="0" Text="{Binding Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4"/>
         <Button Grid.Column="4" Grid.Row="0" Content="Connect" Command="{Binding ConnectCommand}" Margin="4"/>
+        <ItemsControl Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" ItemsSource="{Binding Artists}"/>
     </Grid>
 
 </Window>
