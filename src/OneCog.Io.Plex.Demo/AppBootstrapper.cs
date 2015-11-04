@@ -1,8 +1,11 @@
-namespace OneCog.Io.Plex.Demo {
-    using System;
-    using System.Collections.Generic;
-    using Caliburn.Micro;
+using System;
+using System.Collections.Generic;
+using Caliburn.Micro;
+using IEventAggregator = Reactive.EventAggregator.IEventAggregator;
+using EventAggregator = Reactive.EventAggregator.EventAggregator;
 
+namespace OneCog.Io.Plex.Demo 
+{
     public class AppBootstrapper : BootstrapperBase {
         SimpleContainer container;
 
@@ -12,12 +15,12 @@ namespace OneCog.Io.Plex.Demo {
 
         protected override void Configure() {
             container = new SimpleContainer();
-
-            container.PerRequest<ViewModels.IAllArtistsViewModel, ViewModels.AllArtistsViewModel>();
-
+            
             container.Singleton<IWindowManager, WindowManager>();
             container.Singleton<IEventAggregator, EventAggregator>();
             container.PerRequest<IShellViewModel, ShellViewModel>();
+
+            container.PerRequest<ViewModels.IAllArtistsViewModel, ViewModels.AllArtistsViewModel>();
         }
 
         protected override object GetInstance(Type service, string key) {

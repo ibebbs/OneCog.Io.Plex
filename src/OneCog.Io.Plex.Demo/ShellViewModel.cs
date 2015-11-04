@@ -8,6 +8,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Windows.Input;
+using IEventAggregator = Reactive.EventAggregator.IEventAggregator;
 
 namespace OneCog.Io.Plex.Demo 
 {
@@ -15,8 +16,10 @@ namespace OneCog.Io.Plex.Demo
     {
     }
 
-    public class ShellViewModel : Screen, IShellViewModel 
+    public class ShellViewModel : Screen, IShellViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
+
         private readonly ObservableProperty<string> _host;
         private readonly ObservableProperty<ushort> _port;
         private readonly ObservableCommand _connectCommand;
@@ -25,9 +28,12 @@ namespace OneCog.Io.Plex.Demo
 
         private IDisposable _behaviors;
 
-        public ShellViewModel(ViewModels.IAllArtistsViewModel allArtistsViewModel)
+        public ShellViewModel(ViewModels.IAllArtistsViewModel allArtistsViewModel, IEventAggregator eventAggregator)
         {
             AllArtistsViewModel = allArtistsViewModel;
+
+            _eventAggregator = eventAggregator;
+
             _host = new ObservableProperty<string>("winplex", this, () => Host);
             _port = new ObservableProperty<ushort>(32400, this, () => Port);
             _connectCommand = new ObservableCommand();
@@ -35,7 +41,7 @@ namespace OneCog.Io.Plex.Demo
 
             _behaviors = new CompositeDisposable(
                 EnsureConnectCommandConnectsToServer(),
-                EnsureServerConnectionIsPassedToAllArtistViewModel()
+                EnsureServerConnectionIsPublished()
             );
         }
 
@@ -47,9 +53,9 @@ namespace OneCog.Io.Plex.Demo
                 .Subscribe(_server);
         }
 
-        private IDisposable EnsureServerConnectionIsPassedToAllArtistViewModel()
+        private IDisposable EnsureServerConnectionIsPublished()
         {
-            return _server.Subscribe(AllArtistsViewModel.Server);
+            return _server.Subscribe(server => _eventAggregator.Publish(new Message.ServerConnectionAvailable(server)));
         }
 
         public ViewModels.IAllArtistsViewModel AllArtistsViewModel { get; private set; }

@@ -8,26 +8,26 @@ using System.Reactive.Disposables;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
+using IEventAggregator = Reactive.EventAggregator.IEventAggregator;
 
 namespace OneCog.Io.Plex.Demo.ViewModels
 {
     public interface IAllArtistsViewModel : IScreen
     {
-        IObserver<IServer> Server { get; }
-
         IEnumerable<Music.IArtist> Artists { get; }
     }
 
     public class AllArtistsViewModel : Screen, IAllArtistsViewModel
     {
-        private readonly Subject<IServer> _server;
+        private readonly IEventAggregator _eventAggregator;
         private readonly ObservableCollection<Music.IArtist> _artists;
 
         private IDisposable _behaviours;
 
-        public AllArtistsViewModel()
+        public AllArtistsViewModel(IEventAggregator eventAggregator)
         {
-            _server = new Subject<IServer>();
+            _eventAggregator = eventAggregator;
+
             _artists = new ObservableCollection<Music.IArtist>();
 
             _behaviours = new CompositeDisposable(
@@ -37,7 +37,9 @@ namespace OneCog.Io.Plex.Demo.ViewModels
 
         private IDisposable EnsureArtistsAreRetrievedWhenServerIsConnected()
         {
-            IObservable<ICollectionAction> artistActions = _server
+            IObservable<ICollectionAction> artistActions = _eventAggregator
+                .GetEvent<Message.ServerConnectionAvailable>()
+                .Select(message => message.Server)
                 .Select(server =>
                     server.Music.Artists.All
                         .Select<Music.IArtist, ICollectionAction>(artist => Collection<Music.IArtist>.Add(artist))
@@ -51,11 +53,6 @@ namespace OneCog.Io.Plex.Demo.ViewModels
                 artistActions.OfType<Clear>().Subscribe(_ => _artists.Clear()),
                 artistActions.OfType<Add<Music.IArtist>>().Subscribe(action => _artists.Add(action.Item))
             );
-        }
-
-        public IObserver<IServer> Server
-        {
-            get { return _server; }
         }
 
         public IEnumerable<Music.IArtist> Artists
