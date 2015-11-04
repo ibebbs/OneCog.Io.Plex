@@ -23,21 +23,19 @@ namespace OneCog.Io.Plex.Demo
 
         private readonly Subject<IServer> _server;
 
-        private readonly ObservableCollection<Music.IArtist> _artists;
-
         private IDisposable _behaviors;
 
-        public ShellViewModel()
+        public ShellViewModel(ViewModels.IAllArtistsViewModel allArtistsViewModel)
         {
+            AllArtistsViewModel = allArtistsViewModel;
             _host = new ObservableProperty<string>("winplex", this, () => Host);
             _port = new ObservableProperty<ushort>(32400, this, () => Port);
             _connectCommand = new ObservableCommand();
             _server = new Subject<IServer>();
-            _artists = new ObservableCollection<Music.IArtist>();
 
             _behaviors = new CompositeDisposable(
                 EnsureConnectCommandConnectsToServer(),
-                EnsureArtistsAreRetrievedWhenServerIsConnected()
+                EnsureServerConnectionIsPassedToAllArtistViewModel()
             );
         }
 
@@ -49,23 +47,12 @@ namespace OneCog.Io.Plex.Demo
                 .Subscribe(_server);
         }
 
-        private IDisposable EnsureArtistsAreRetrievedWhenServerIsConnected()
+        private IDisposable EnsureServerConnectionIsPassedToAllArtistViewModel()
         {
-            IObservable<ICollectionAction> artistActions = _server
-                .Select(server =>
-                    server.Music.Artists.All
-                        .Select<Music.IArtist, ICollectionAction>(artist => Collection<Music.IArtist>.Add(artist))
-                        .StartWith(Collection<Music.IArtist>.Clear()))
-                .Switch()
-                .ObserveOnDispatcher()
-                .Publish()
-                .RefCount();
-
-            return new CompositeDisposable(
-                artistActions.OfType<Clear>().Subscribe(_ => _artists.Clear()),
-                artistActions.OfType<Add<Music.IArtist>>().Subscribe(action => _artists.Add(action.Item))
-            );
+            return _server.Subscribe(AllArtistsViewModel.Server);
         }
+
+        public ViewModels.IAllArtistsViewModel AllArtistsViewModel { get; private set; }
 
         public string Host 
         {
@@ -82,11 +69,6 @@ namespace OneCog.Io.Plex.Demo
         public ICommand ConnectCommand
         {
             get { return _connectCommand; }
-        }
-
-        public IEnumerable<Music.IArtist> Artists
-        {
-            get { return _artists; }
         }
     }
 }

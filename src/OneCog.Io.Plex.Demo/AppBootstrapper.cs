@@ -13,6 +13,8 @@ namespace OneCog.Io.Plex.Demo {
         protected override void Configure() {
             container = new SimpleContainer();
 
+            container.PerRequest<ViewModels.IAllArtistsViewModel, ViewModels.AllArtistsViewModel>();
+
             container.Singleton<IWindowManager, WindowManager>();
             container.Singleton<IEventAggregator, EventAggregator>();
             container.PerRequest<IShellViewModel, ShellViewModel>();
