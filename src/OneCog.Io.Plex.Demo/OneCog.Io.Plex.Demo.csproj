@@ -93,12 +93,14 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="CollectionAction.cs" />
+    <Compile Include="Message\ArtistSelected.cs" />
     <Compile Include="Message\ServerConnectionAvailable.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModels\AlbumsForArtistViewModel.cs" />
     <Compile Include="ViewModels\AllArtistsViewModel.cs" />
     <Compile Include="Views\AllArtistsView.xaml.cs">
       <DependentUpon>AllArtistsView.xaml</DependentUpon>

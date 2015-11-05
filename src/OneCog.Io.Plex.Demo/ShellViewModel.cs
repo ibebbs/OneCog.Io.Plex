@@ -16,7 +16,7 @@ namespace OneCog.Io.Plex.Demo
     {
     }
 
-    public class ShellViewModel : Screen, IShellViewModel
+    public class ShellViewModel : Conductor<IScreen>.Collection.OneActive, IShellViewModel
     {
         private readonly IEventAggregator _eventAggregator;
 
@@ -28,9 +28,12 @@ namespace OneCog.Io.Plex.Demo
 
         private IDisposable _behaviors;
 
-        public ShellViewModel(ViewModels.IAllArtistsViewModel allArtistsViewModel, IEventAggregator eventAggregator)
+        public ShellViewModel(ViewModels.IAllArtistsViewModel allArtistsViewModel, ViewModels.IAlbumsForArtistViewModel albumsForArtistViewModel, IEventAggregator eventAggregator)
         {
+            Items.AddRange(new IScreen[] { allArtistsViewModel, albumsForArtistViewModel });
+            
             AllArtistsViewModel = allArtistsViewModel;
+            AlbumsForArtistViewModel = albumsForArtistViewModel;
 
             _eventAggregator = eventAggregator;
 
@@ -39,10 +42,20 @@ namespace OneCog.Io.Plex.Demo
             _connectCommand = new ObservableCommand();
             _server = new Subject<IServer>();
 
+            ActivateItem(allArtistsViewModel);
+
             _behaviors = new CompositeDisposable(
                 EnsureConnectCommandConnectsToServer(),
-                EnsureServerConnectionIsPublished()
+                EnsureServerConnectionIsPublished(),
+                EnsureAlbumsForArtistsDisplayedWhenArtistSelected()
             );
+        }
+
+        private IDisposable EnsureAlbumsForArtistsDisplayedWhenArtistSelected()
+        {
+            return _eventAggregator
+                .GetEvent<Message.ArtistSelected>()
+                .Subscribe(_ => ActivateItem(AlbumsForArtistViewModel));
         }
 
         private IDisposable EnsureConnectCommandConnectsToServer()
@@ -59,6 +72,8 @@ namespace OneCog.Io.Plex.Demo
         }
 
         public ViewModels.IAllArtistsViewModel AllArtistsViewModel { get; private set; }
+
+        public ViewModels.IAlbumsForArtistViewModel AlbumsForArtistViewModel { get; private set; }
 
         public string Host 
         {
